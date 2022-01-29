@@ -17,11 +17,11 @@ public class PlayerMovement : MonoBehaviour
 	    m_movement.x = Input.GetAxisRaw("Horizontal");
 	    m_movement.y = Input.GetAxisRaw("Vertical");
 
-	    if (Input.GetKey(KeyCode.G))
+	    if (Input.GetKey(KeyCode.Space))
 	    {
 		    if (m_grab != null && !m_taken)
 		    {
-			    m_grab.transform.parent = transform;
+			    m_grab.SetParent(transform);
 			    m_taken = true;
 		    }
 	    }
@@ -29,14 +29,16 @@ public class PlayerMovement : MonoBehaviour
 	    {
 		    if (m_grab != null)
 		    {
-			    m_grab.transform.parent = null;
+			    m_grab.SetParent(null);
 			    m_grab = null;
 			    m_taken = false;
 		    }
 	    }
 
-	    if (Input.GetKeyDown(KeyCode.Q))
+	    if (Input.GetKeyDown(KeyCode.G))
 	    {
+		    m_movement = Vector2.zero;
+		    
 		    if (m_grab != null)
 		    {
 			    Vector2 dir;
@@ -55,10 +57,9 @@ public class PlayerMovement : MonoBehaviour
 			    }
 			    
 			    m_grab.PushItem(dir);
-			    m_grab.transform.parent = null;
+			    m_grab.SetParent(null);
 			    m_grab = null;
 			    m_taken = false;
-			    m_body.velocity = Vector2.zero;
 		    }
 	    }
     }
@@ -75,12 +76,25 @@ public class PlayerMovement : MonoBehaviour
     {
 	    var grab = col.gameObject.GetComponent<GrabHandler>();
 
-	    if (grab == null && !m_taken)
+	    if (grab == null)
 	    {
 		    return;
 	    }
 
 	    m_grab = grab;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+	    var item = col.GetComponent<CollectableItem>();
+
+	    if (Input.GetKeyDown(KeyCode.Space))
+	    {
+		    if (item != null)
+		    {
+			    item.SetParent(transform);
+		    }
+	    }
     }
 
     private Rigidbody2D m_body;

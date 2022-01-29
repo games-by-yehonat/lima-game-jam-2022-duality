@@ -5,6 +5,23 @@ using UnityEngine;
 
 public class GrabHandler : MonoBehaviour
 {
+    public void SetParent(Transform parent)
+    {
+        if (m_canParent)
+        {
+            return;
+        }
+        
+        transform.parent = parent;
+    }
+
+    public void SetOnGrabFloorArea(Transform parent)
+    {
+        SetParent(parent);
+        transform.position = parent.position;
+        m_canParent = true;
+    }
+    
     public void PushItem(Vector2 direction)
     {
         transform.parent = null;
@@ -37,4 +54,5 @@ public class GrabHandler : MonoBehaviour
     private Vector2 m_direction = Vector2.zero;
     private float m_speed = 0.0f;
     private float m_decelerate;
+    private bool m_canParent;
 }
