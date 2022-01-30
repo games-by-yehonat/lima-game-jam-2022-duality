@@ -62,11 +62,11 @@ public class GrabHandler : MonoBehaviour
 
     private void Start()
     {
-        m_decelerate = 0.015f;
+        // m_decelerate = 0.015f;
     }
 
     private Vector2 m_direction = Vector2.zero;
     private float m_speed = 0.0f;
-    private float m_decelerate;
+    // private float m_decelerate;
     private bool m_canParent;
 }

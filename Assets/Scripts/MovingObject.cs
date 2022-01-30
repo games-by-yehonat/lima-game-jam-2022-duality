@@ -25,13 +25,11 @@ public abstract  class MovingObject : MonoBehaviour
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2 (xDir, yDir);
         
-        m_boxCollider.enabled = false;
+        // m_boxCollider.enabled = false;
         
         hit = Physics2D.Linecast (start, end, blockingLayer);
-        Debug.Log(hit);
-        Debug.DrawLine(transform.position, end, Color.white);
         
-        m_boxCollider.enabled = true;
+        // m_boxCollider.enabled = true;
         
         if(hit.transform == null)
         {
