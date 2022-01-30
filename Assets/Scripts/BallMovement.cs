@@ -62,7 +62,8 @@ public class BallMovement : EntityMovement
 
     private void CalculateNewPosition(RaycastHit2D other)
     {
-
+        if (sound)
+            sound.Play();
         switch (other.transform.tag)
         {
             case "Hole":

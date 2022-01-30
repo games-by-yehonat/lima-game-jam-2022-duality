@@ -63,4 +63,10 @@ public class NewPlayer : EntityMovement
     {
 
     }
+
+    public void Teleport(Vector3 _pos)
+    {
+        transform.position = _pos;
+        newPosition = _pos;
+    }
 }

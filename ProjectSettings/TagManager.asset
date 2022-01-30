@@ -9,6 +9,7 @@ TagManager:
   - Ball
   - Mirror
   - Item
+  - Box
   layers:
   - Default
   - TransparentFX
