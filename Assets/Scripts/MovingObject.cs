@@ -37,6 +37,20 @@ public abstract  class MovingObject : MonoBehaviour
             StartCoroutine (SmoothMovement (end));
             return true;
         }
+        else
+        {
+            var block = hit.collider.GetComponent<EntityMovement>();
+            if (block != null)
+            {
+                if (block.CanMove(xDir, yDir, blockingLayer))
+                {
+                    m_turn = false;
+                    StartCoroutine (SmoothMovement (end));
+                    return true;
+                }
+                
+            }
+        }
 
         m_turn = true;
         return false;

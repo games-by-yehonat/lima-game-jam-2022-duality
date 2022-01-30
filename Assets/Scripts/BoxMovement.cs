@@ -28,5 +28,5 @@ public class BoxMovement : EntityMovement
         newPosition = transform.position + dir;
 
     }
-
+    
 }
