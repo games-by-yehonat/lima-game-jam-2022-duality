@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class NewPlayer : EntityMovement
-{
+{   
+    
 
     internal override void Update()
     {

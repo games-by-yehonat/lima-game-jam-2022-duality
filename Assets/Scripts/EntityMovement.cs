@@ -15,8 +15,8 @@ abstract public class EntityMovement : MonoBehaviour
     internal float speed = 0;
 
     internal float currentSpeed = 0;
-    protected bool m_isHole = false;
-    
+    // protected bool m_isHole = false;
+
     internal virtual void Awake()
     {
         newPosition = transform.position;
@@ -60,10 +60,10 @@ abstract public class EntityMovement : MonoBehaviour
     
     public bool CanMove(int xDir, int yDir, LayerMask blockingLayer)
     {
-        if (m_isHole)
-        {
-            return true;
-        }
+        // if (m_isHole)
+        // {
+        //     return true;
+        // }
         
         Vector2 start = transform.position;
         Vector2 end = start + new Vector2 (xDir, yDir);
