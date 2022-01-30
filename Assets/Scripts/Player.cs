@@ -27,8 +27,6 @@ public class Player : MovingObject
 		{
 			return;
 		}
-		
-		
 
 		int horizontal = 0;
 		int vertical = 0;
