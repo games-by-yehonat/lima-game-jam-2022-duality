@@ -6,27 +6,42 @@ public class BoxMovement : EntityMovement
 {
     internal override void DetectNewPosition()
     {
-        RaycastHit2D ray;
+        // isReady = true;
+
+        if (CanMove(direction))
+        {
+            Vector3 dir = direction;
+            newPosition = transform.position + dir;
+
+        }
+    }
+
+    public override bool CanMove(Vector2 _dir)
+    {
+        
+        // RaycastHit2D ray;
+        direction = _dir;
         ray = Physics2D.Raycast(transform.position, direction);
         if (ray.collider == null)
-        {   
+        {
             // isReady = true;
-            return;
+            Debug.Log("no -collider");
+            return false;
         }
         float _distance = Vector2.Distance(transform.position, ray.point);
         if (_distance < 0.6f)
-        {   
-            // isReady = true;
-            return;
-        }
-        if(ray.collider.tag == "Ball")
         {
-            return;
+            // isReady = true;
+            Debug.Log("no - distance");
+            return false;
         }
-        // isReady = true;
-        Vector3 dir = direction;
-        newPosition = transform.position + dir;
-
+        if (ray.collider.tag == "Ball")
+        {
+            Debug.Log("no tag");
+            return false;
+        }
+        Debug.Log("yes");
+        return base.CanMove(direction);
     }
 
 }
