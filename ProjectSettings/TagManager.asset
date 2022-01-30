@@ -7,6 +7,8 @@ TagManager:
   - Wall
   - Hole
   - Ball
+  - Mirror
+  - Item
   layers:
   - Default
   - TransparentFX

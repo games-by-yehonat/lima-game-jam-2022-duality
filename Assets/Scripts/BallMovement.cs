@@ -38,6 +38,7 @@ public class BallMovement : EntityMovement
                     isReady = false;
                     GetComponent<Collider2D>().isTrigger = true;
                     other.collider.enabled = false;
+                    transform.parent = null;
                     break;
                 }
             default:
