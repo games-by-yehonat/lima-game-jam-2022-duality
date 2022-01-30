@@ -31,9 +31,12 @@ public class NewPlayer : EntityMovement
                 {
                     Move();
                 }
-                if(!ray.collider.GetComponent<EntityMovement>()){
+                if (!ray.collider.GetComponent<EntityMovement>())
+                {
                     Move();
                 }
+                if (ray.collider.isTrigger)
+                    Move();
             }
 
 

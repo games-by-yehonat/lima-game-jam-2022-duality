@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class BallMovement : EntityMovement
 {
-<<<<<<< HEAD
 
-    
-
-=======
-    
->>>>>>> 9d6808c1ea6211ec103e2bc53cf0bb5fd7ab83bc
     internal override void DetectNewPosition()
     {
         // RaycastHit2D ray;
@@ -41,15 +35,23 @@ public class BallMovement : EntityMovement
         direction = _dir;
         ray = Physics2D.Raycast(transform.position, direction);
         if (ray.collider == null)
-        {   
+        {
             Debug.Log("no - coll");
+            return false;
+        }
+
+        float _distance = Vector2.Distance(transform.position, ray.point);
+        if (_distance < 0.6f && !ray.collider.CompareTag("Hole"))
+        {
+            // isReady = true;
+            Debug.Log("no - distance");
             return false;
         }
         if (ray.collider.tag == "Ball")
         {
             ray = Physics2D.Raycast(ray.transform.position, direction);
             if (ray.collider == null)
-            {   
+            {
                 Debug.Log("no - second ball");
                 return false;
             }
