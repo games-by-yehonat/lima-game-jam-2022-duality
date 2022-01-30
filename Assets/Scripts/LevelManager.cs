@@ -19,6 +19,9 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private int nexLevel;
 
+    [SerializeField]
+    private AudioClip[] clips;
+
     void Awake()
     {
         if (singleton != null)
@@ -30,7 +33,7 @@ public class LevelManager : MonoBehaviour
     }
 
     void Start()
-    {       
+    {
         childMap = GameObject.Find("Child");
         adultMap = GameObject.Find("Adult");
         CharacterChange();
@@ -38,16 +41,21 @@ public class LevelManager : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.J))
+        if (Input.GetKeyDown(KeyCode.J))
             CharacterChange();
     }
-
+    private bool isChild;
     public void CharacterChange()
     {
         if (childMap && adultMap)
         {
+            isChild = !isChild;
+            GetComponent<AudioSource>().clip = clips[isChild ? 1 : 0];
+
+            GetComponent<AudioSource>().Play();
             childMap.SetActive(characterChange);
             adultMap.SetActive(!characterChange);
+            GameObject.Find("PlayerPrefab").GetComponent<NewPlayer>().CharacterChange();
         }
         characterChange = !characterChange;
 

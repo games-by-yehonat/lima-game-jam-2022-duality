@@ -10,11 +10,13 @@ abstract public class EntityMovement : MonoBehaviour
     internal Vector2 direction;
 
     internal RaycastHit2D ray;
-
+    
     [SerializeField]
     internal float speed = 0;
 
     internal float currentSpeed = 0;
+
+    public AudioSource sound;
 
     internal virtual void Awake()
     {
@@ -22,14 +24,17 @@ abstract public class EntityMovement : MonoBehaviour
     }
 
     internal virtual void Update()
-    {   
+    {
         if (isReady == true)
         {
             return;
         }
         currentSpeed += Time.deltaTime * speed;
         if (currentSpeed >= 1 || Vector3.Distance(transform.position, newPosition) <= 0.01f)
+        {
             isReady = true;
+        }
+
     }
 
     internal virtual void LateUpdate()
@@ -39,6 +44,8 @@ abstract public class EntityMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, newPosition, currentSpeed);
         }
+
+        
     }
 
     internal virtual void OnCollisionEnter2D(Collision2D other)
@@ -56,26 +63,27 @@ abstract public class EntityMovement : MonoBehaviour
             DetectNewPosition();
         }
     }
-    
+
     public bool CanMove(int xDir, int yDir, LayerMask blockingLayer)
     {
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2 (xDir, yDir);
-        
-        RaycastHit2D hit = Physics2D.Linecast (start, end, blockingLayer);
+        Vector2 end = start + new Vector2(xDir, yDir);
+
+        RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
 
         if (hit.transform == null)
         {
             return true;
         }
-        
+
         return false;
     }
-
+    
     internal virtual void DetectNewPosition() { }
 
     virtual public bool CanMove(Vector2 _dir)
-    {   
+    {
+        
         return true;
     }
 }

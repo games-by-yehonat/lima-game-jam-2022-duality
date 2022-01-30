@@ -12,13 +12,14 @@ public class BoxMovement : EntityMovement
         {
             Vector3 dir = direction;
             newPosition = transform.position + dir;
+            if (sound)
+            sound.Play();
 
         }
     }
 
     public override bool CanMove(Vector2 _dir)
     {
-        
         // RaycastHit2D ray;
         direction = _dir;
         ray = Physics2D.Raycast(transform.position, direction);
@@ -35,7 +36,7 @@ public class BoxMovement : EntityMovement
             Debug.Log("no - distance");
             return false;
         }
-        if (ray.collider.tag == "Ball")
+        if (ray.collider.tag == "Ball" || ray.collider.tag == "Box")
         {
             Debug.Log("no tag");
             return false;
