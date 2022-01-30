@@ -16,6 +16,7 @@ abstract public class EntityMovement : MonoBehaviour
 
     internal float currentSpeed = 0;
 
+
     internal virtual void Awake()
     {
         newPosition = transform.position;
