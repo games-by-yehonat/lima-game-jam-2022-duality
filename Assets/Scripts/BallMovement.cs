@@ -4,25 +4,60 @@ using UnityEngine;
 
 public class BallMovement : EntityMovement
 {
-    
+
     internal override void DetectNewPosition()
     {
-        RaycastHit2D ray;
+        // RaycastHit2D ray;
+        // ray = Physics2D.Raycast(transform.position, direction);
+        // if (ray.collider == null)
+        // {
+        //     return;
+        // }
+        // if (ray.collider.tag == "Ball")
+        // {
+        //     ray = Physics2D.Raycast(ray.transform.position, direction);
+        //     if (ray.collider == null)
+        //     {
+        //         return;
+        //     }
+        // }
+        if (CanMove(direction))
+        {
+            CalculateNewPosition(ray);
+
+        }
+
+    }
+
+    public override bool CanMove(Vector2 _dir)
+    {
+        // RaycastHit2D ray;
+        direction = _dir;
         ray = Physics2D.Raycast(transform.position, direction);
         if (ray.collider == null)
         {
-            return;
+            Debug.Log("no - coll");
+            return false;
+        }
+
+        float _distance = Vector2.Distance(transform.position, ray.point);
+        if (_distance < 0.6f && !ray.collider.CompareTag("Hole"))
+        {
+            // isReady = true;
+            Debug.Log("no - distance");
+            return false;
         }
         if (ray.collider.tag == "Ball")
         {
             ray = Physics2D.Raycast(ray.transform.position, direction);
             if (ray.collider == null)
             {
-                return;
+                Debug.Log("no - second ball");
+                return false;
             }
         }
-        CalculateNewPosition(ray);
-
+        Debug.Log("yes");
+        return base.CanMove(direction);
     }
 
     private void CalculateNewPosition(RaycastHit2D other)

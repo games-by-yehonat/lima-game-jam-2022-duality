@@ -1866,6 +1866,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8519098847125052711, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
 --- !u!4 &1155456983 stripped
@@ -2001,6 +2005,7 @@ GameObject:
   - component: {fileID: 1510382844}
   - component: {fileID: 1510382850}
   - component: {fileID: 1510382847}
+  - component: {fileID: 1510382848}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2113,7 +2118,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1510382849
+--- !u!114 &1510382848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2121,6 +2126,20 @@ MonoBehaviour:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1510382843}
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daba25e6408cf7745b071eb5268fa43f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isReady: 1
+  speed: 1
+--- !u!114 &1510382849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510382843}
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17b1b7325d5b4f6aaa5eeb6a2907bd28, type: 3}
   m_Name: 
@@ -2691,7 +2710,7 @@ GameObject:
   - component: {fileID: 1849605372}
   m_Layer: 6
   m_Name: Tilemap
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3766,6 +3785,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8519098847125052710, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8519098847125052711, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
       propertyPath: m_Name
       value: Box (1)
@@ -3914,6 +3937,10 @@ PrefabInstance:
     - target: {fileID: 8519098847125052711, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519098847125052711, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
+      propertyPath: m_TagString
+      value: Wall
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
@@ -4227,6 +4254,10 @@ PrefabInstance:
     - target: {fileID: 8519098847125052707, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8519098847125052710, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8519098847125052710, guid: 98d688f009ff4e443b216ae9653eac89, type: 3}
       propertyPath: ContactTime

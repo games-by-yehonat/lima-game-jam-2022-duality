@@ -9,6 +9,8 @@ abstract public class EntityMovement : MonoBehaviour
     internal Vector2 newPosition;
     internal Vector2 direction;
 
+    internal RaycastHit2D ray;
+
     [SerializeField]
     internal float speed = 0;
 
@@ -21,7 +23,7 @@ abstract public class EntityMovement : MonoBehaviour
     }
 
     internal virtual void Update()
-    {
+    {   
         if (isReady == true)
         {
             return;
@@ -77,4 +79,9 @@ abstract public class EntityMovement : MonoBehaviour
     }
     
     internal virtual void DetectNewPosition() { }
+
+    virtual public bool CanMove(Vector2 _dir)
+    {   
+        return true;
+    }
 }
