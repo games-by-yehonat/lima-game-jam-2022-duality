@@ -56,6 +56,21 @@ abstract public class EntityMovement : MonoBehaviour
             DetectNewPosition();
         }
     }
+    
+    public bool CanMove(int xDir, int yDir, LayerMask blockingLayer)
+    {
+        Vector2 start = transform.position;
+        Vector2 end = start + new Vector2 (xDir, yDir);
+        
+        RaycastHit2D hit = Physics2D.Linecast (start, end, blockingLayer);
+
+        if (hit.transform == null)
+        {
+            return true;
+        }
+        
+        return false;
+    }
 
     internal virtual void DetectNewPosition() { }
 

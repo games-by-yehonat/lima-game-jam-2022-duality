@@ -43,5 +43,5 @@ public class BoxMovement : EntityMovement
         Debug.Log("yes");
         return base.CanMove(direction);
     }
-
+    
 }

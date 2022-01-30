@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class BallMovement : EntityMovement
 {
+<<<<<<< HEAD
 
     
 
+=======
+    
+>>>>>>> 9d6808c1ea6211ec103e2bc53cf0bb5fd7ab83bc
     internal override void DetectNewPosition()
     {
         // RaycastHit2D ray;
