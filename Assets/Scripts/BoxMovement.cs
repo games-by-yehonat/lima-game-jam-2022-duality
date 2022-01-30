@@ -12,6 +12,8 @@ public class BoxMovement : EntityMovement
         {
             Vector3 dir = direction;
             newPosition = transform.position + dir;
+            if (sound)
+            sound.Play();
 
         }
     }
@@ -34,12 +36,7 @@ public class BoxMovement : EntityMovement
             Debug.Log("no - distance");
             return false;
         }
-        
-        // isReady = true;
-        Vector3 dir = direction;
-        newPosition = transform.position + dir;
-
-        if (ray.collider.tag == "Ball")
+        if (ray.collider.tag == "Ball" || ray.collider.tag == "Box")
         {
             Debug.Log("no tag");
             return false;

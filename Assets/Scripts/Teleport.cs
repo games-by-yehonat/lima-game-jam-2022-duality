@@ -11,7 +11,7 @@ public class Teleport : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            other.transform.position = exit.position;
+            other.GetComponent<NewPlayer>().Teleport(exit.position);
         }
     }
 }

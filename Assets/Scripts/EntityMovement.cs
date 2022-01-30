@@ -16,13 +16,15 @@ abstract public class EntityMovement : MonoBehaviour
 
     internal float currentSpeed = 0;
 
+    public AudioSource sound;
+
     internal virtual void Awake()
     {
         newPosition = transform.position;
     }
 
     internal virtual void Update()
-    {   
+    {
         if (isReady == true)
         {
             return;
@@ -61,26 +63,27 @@ abstract public class EntityMovement : MonoBehaviour
             DetectNewPosition();
         }
     }
-    
+
     public bool CanMove(int xDir, int yDir, LayerMask blockingLayer)
     {
         Vector2 start = transform.position;
-        Vector2 end = start + new Vector2 (xDir, yDir);
-        
-        RaycastHit2D hit = Physics2D.Linecast (start, end, blockingLayer);
+        Vector2 end = start + new Vector2(xDir, yDir);
+
+        RaycastHit2D hit = Physics2D.Linecast(start, end, blockingLayer);
 
         if (hit.transform == null)
         {
             return true;
         }
-        
+
         return false;
     }
     
     internal virtual void DetectNewPosition() { }
 
     virtual public bool CanMove(Vector2 _dir)
-    {   
+    {
+        
         return true;
     }
 }
