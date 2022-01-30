@@ -73,7 +73,7 @@ abstract public class EntityMovement : MonoBehaviour
 
         return false;
     }
-
+    
     internal virtual void DetectNewPosition() { }
 
     virtual public bool CanMove(Vector2 _dir)

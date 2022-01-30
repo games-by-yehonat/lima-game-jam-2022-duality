@@ -20,7 +20,6 @@ public class BoxMovement : EntityMovement
 
     public override bool CanMove(Vector2 _dir)
     {
-        
         // RaycastHit2D ray;
         direction = _dir;
         ray = Physics2D.Raycast(transform.position, direction);
