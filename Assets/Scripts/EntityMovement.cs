@@ -4,21 +4,56 @@ using UnityEngine;
 
 abstract public class EntityMovement : MonoBehaviour
 {
-    internal bool isActive;
+    [SerializeField]
+    internal bool isReady = true;
     internal Vector2 newPosition;
+    internal Vector2 direction;
 
-    internal int x;
-    internal int y;
+    [SerializeField]
+    internal float speed = 0;
 
-    private void OnCollisionEnter2D(Collision2D other)
+    internal float currentSpeed = 0;
+
+    internal virtual void Awake()
     {
-        if (other.gameObject.CompareTag("Player"))
+        newPosition = transform.position;
+    }
+
+    internal virtual void Update()
+    {
+        if (isReady == true)
         {
-            x = -Mathf.RoundToInt(other.transform.position.x - transform.position.x);
-            y = -Mathf.RoundToInt(other.transform.position.y - transform.position.y);
+            return;
+        }
+        currentSpeed += Time.deltaTime * speed;
+        if (currentSpeed >= 1 || Vector3.Distance(transform.position, newPosition) <= 0.01f)
+            isReady = true;
+    }
+
+    internal virtual void LateUpdate()
+    {
+
+        if (newPosition != Vector2.zero)
+        {
+            transform.position = Vector3.Lerp(transform.position, newPosition, currentSpeed);
+        }
+    }
+
+    internal virtual void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && isReady)
+        {
+            direction.x = -Mathf.RoundToInt(other.transform.position.x - transform.position.x);
+            direction.y = -Mathf.RoundToInt(other.transform.position.y - transform.position.y);
+            if (Mathf.Abs(direction.y) == Mathf.Abs(direction.x))
+            {
+                direction = Vector2.right * direction;
+            }
+            isReady = false;
+            currentSpeed = 0;
             DetectNewPosition();
         }
     }
 
-    internal virtual void DetectNewPosition(){}
+    internal virtual void DetectNewPosition() { }
 }

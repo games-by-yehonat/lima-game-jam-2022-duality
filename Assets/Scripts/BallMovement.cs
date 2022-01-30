@@ -5,27 +5,23 @@ using UnityEngine;
 public class BallMovement : EntityMovement
 {
 
-    public float speed = 0;
 
-
-    void Update()
-    {
-        speed += Time.deltaTime;
-    }
-
-    void LateUpdate()
-    {
-        if (newPosition != Vector2.zero)
-            transform.position = Vector3.Lerp(transform.position, newPosition, speed);
-    }
 
     internal override void DetectNewPosition()
     {
         RaycastHit2D ray;
-        ray = Physics2D.Raycast(transform.position, new Vector2(x, y));
+        ray = Physics2D.Raycast(transform.position, direction);
         if (ray.collider == null)
         {
             return;
+        }
+        if (ray.collider.tag == "Ball")
+        {
+            ray = Physics2D.Raycast(ray.transform.position, direction);
+            if (ray.collider == null)
+            {
+                return;
+            }
         }
         CalculateNewPosition(ray);
 
@@ -33,18 +29,20 @@ public class BallMovement : EntityMovement
 
     private void CalculateNewPosition(RaycastHit2D other)
     {
-        speed = 0;
+
         switch (other.transform.tag)
         {
             case "Hole":
                 {
-                    newPosition = other.point + (new Vector2(x, y) / 2);
-                    isActive = false;
+                    newPosition = other.point + (direction / 2);
+                    isReady = false;
+                    GetComponent<Collider2D>().isTrigger = true;
+                    other.collider.enabled = false;
                     break;
                 }
             default:
                 {
-                    newPosition = other.point - (new Vector2(x, y) / 2);
+                    newPosition = other.point - (direction / 2);
                     break;
                 }
         }
