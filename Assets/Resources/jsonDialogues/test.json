@@ -1,0 +1,16 @@
+{
+    "lines": [
+       {
+           "person":"Viejo",
+           "text":"This is an example"
+       },
+       {
+           "person":"Viejo",
+           "text":"This is an example 2"
+       },
+       {
+           "person":"Chico",
+           "text":"This is an example 3"
+       }
+    ]
+}
