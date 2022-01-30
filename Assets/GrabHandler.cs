@@ -32,8 +32,22 @@ public class GrabHandler : MonoBehaviour
 
     private void Update()
     {
-        m_speed -= m_decelerate * Time.deltaTime;
+        // m_speed -= m_decelerate * Time.deltaTime;
         m_speed = Mathf.Max(m_speed, 0);
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        Debug.Log(col);
+        m_speed = 0;
+        m_direction = Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        Debug.Log(col);
+        m_speed = 0;
+        m_direction = Vector2.zero;
     }
 
     private void LateUpdate()
