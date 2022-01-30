@@ -10,7 +10,7 @@ abstract public class EntityMovement : MonoBehaviour
     internal Vector2 direction;
 
     internal RaycastHit2D ray;
-
+    
     [SerializeField]
     internal float speed = 0;
 
@@ -29,7 +29,10 @@ abstract public class EntityMovement : MonoBehaviour
         }
         currentSpeed += Time.deltaTime * speed;
         if (currentSpeed >= 1 || Vector3.Distance(transform.position, newPosition) <= 0.01f)
+        {
             isReady = true;
+        }
+
     }
 
     internal virtual void LateUpdate()
@@ -39,6 +42,8 @@ abstract public class EntityMovement : MonoBehaviour
         {
             transform.position = Vector3.Lerp(transform.position, newPosition, currentSpeed);
         }
+
+        
     }
 
     internal virtual void OnCollisionEnter2D(Collision2D other)
