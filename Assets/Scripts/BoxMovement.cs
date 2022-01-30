@@ -26,7 +26,6 @@ public class BoxMovement : EntityMovement
         // isReady = true;
         Vector3 dir = direction;
         newPosition = transform.position + dir;
-
     }
     
 }
